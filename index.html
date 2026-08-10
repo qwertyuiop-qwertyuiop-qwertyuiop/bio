@@ -26,7 +26,7 @@
             padding: 20px;
         }
 
-        /* Profile Card with Subtle Border and Glow Gradient */
+        /* Profile Card with Subtle Border and Violet Glow Cascade */
         .profile-container {
             background: linear-gradient(135deg, #130f1d 0%, #0b0c10 100%);
             width: 100%;
@@ -79,7 +79,7 @@
             background-color: #1a1c23;
         }
 
-        /* Premium Name Gradient Text Effect */
+        /* Name Gradient Text Effect */
         .user-titles h1 {
             font-size: 1.9rem;
             font-weight: 800;
@@ -183,6 +183,7 @@
         
         <div class="profile-header">
             <div class="avatar-wrapper">
+                <!-- Generic loader layout circle before public data triggers sync -->
                 <img id="avatar" class="avatar-img" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='32' height='32' fill='%234e535e' viewBox='0 0 16 16'><path d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/></svg>" alt="Avatar">
             </div>
             <div class="user-titles">
@@ -202,53 +203,77 @@
         </div>
 
         <div class="links-list">
-            <a id="discord-link" href="https://discord.com" target="_blank" class="link-item link-discord">
-                <div class="link-content">
-                    <svg class="discord-icon" viewBox="0 0 127.14 96.36">
-                        <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.85-5.22c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,72.94,0c.85.71,1.74,1.39,2.65,2a68.42,68.42,0,0,1-10.85,5.22,74.37,74.37,0,0,0,6.85,11.11,105.73,105.73,0,0,0,31.05-18.83C129.24,50.7,123.46,27.82,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/>
-                    </svg>
-                    <span>My Discord Account</span>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-        </div>
-
-    </div>
-
-    <script>
-        const userId = "1469757489070211167";
-
-        async function fetchUserProfile() {
-            try {
-                // Fetch direct from the mirror layout proxy pipeline
-                const response = await fetch(`https://mesalytic.moe{userId}`);
-                const data = await response.json();
-                
-                if (data && data.username) {
-                    // Update global tag with your actual username returned from API
-                    document.getElementById('username').textContent = data.global_name || data.username;
-                    
-                    // Construct live avatar CDN source image structure
-                    if (data.avatar && data.avatar.id) {
-                        const isGif = data.avatar.is_animated;
-                        const ext = isGif ? 'gif' : 'png';
-                        document.getElementById('avatar').src = `https://discordapp.com{userId}/${data.avatar.id}.${ext}?size=256`;
-                    } else {
-                        document.getElementById('avatar').src = "https://discordapp.com";
-                    }
-                } else {
-                    document.getElementById('username').textContent = "Profile Info";
-                }
-            } catch (err) {
-                console.error("API failed to pull layout profile:", err);
-                document.getElementById('username').textContent = "Profile Link";
-            }
+            
+            <a id="discord-link" href="<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        fetchUserProfile();
-    </script>
-</body>
-</html>
+        body {
+            background-color: #030303;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Profile Card with Subtle Border and Violet Glow Cascade */
+        .profile-container {
+            background: linear-gradient(135deg, #130f1d 0%, #0b0c10 100%);
+            width: 100%;
+            max-width: 420px;
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid rgba(138, 92, 246, 0.15);
+            box-shadow: 0px 0px 50px rgba(138, 92, 246, 0.12), 0px 0px 100px rgba(88, 101, 242, 0.08);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-container:hover {
+            transform: scale(1.02);
+        }
+
+        .profile-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(138, 92, 246, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 78px;
+            height: 78px;
         }
 
         .avatar-img {
@@ -260,17 +285,7 @@
             background-color: #1a1c23;
         }
 
-        .status-dot {
-            position: absolute;
-            bottom: 1px;
-            right: 1px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            border: 3.5px solid #0d0c13;
-            background-color: #23a55a; /* Online Green */
-        }
-
+        /* Name Gradient Text Effect */
         .user-titles h1 {
             font-size: 1.9rem;
             font-weight: 800;
@@ -374,13 +389,11 @@
         
         <div class="profile-header">
             <div class="avatar-wrapper">
-                <!-- Using Discord's base avatar directory path format targeting your ID directly -->
-                <img id="avatar" class="avatar-img" src="https://discordapp.net" onerror="this.onerror=null; this.src='https://discordapp.com';" alt="Avatar">
-                <div id="status" class="status-dot"></div>
+                <!-- Generic loader layout circle before public data triggers sync -->
+                <img id="avatar" class="avatar-img" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='32' height='32' fill='%234e535e' viewBox='0 0 16 16'><path d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/></svg>" alt="Avatar">
             </div>
             <div class="user-titles">
-                <!-- Hardcoded profile values so nothing gets hung up loading -->
-                <h1 id="username">proximity</h1>
+                <h1 id="username">Loading...</h1>
                 <div class="tags-container">
                     <span class="tag">Luau</span>
                     <span class="tag">Python</span>
@@ -396,7 +409,8 @@
         </div>
 
         <div class="links-list">
-            <a id="discord-link" href="https://discord.com" target="_blank" class="link-item link-discord">
+            
+            <a id="discord-link" href="https://discord.com/users/1469757489070211167" target="_blank" class="link-item link-discord">
                 <div class="link-content">
                     <svg class="discord-icon" viewBox="0 0 127.14 96.36">
                         <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.85-5.22c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,72.94,0c.85.71,1.74,1.39,2.65,2a68.42,68.42,0,0,1-10.85,5.22,74.37,74.37,0,0,0,6.85,11.11,105.73,105.73,0,0,0,31.05-18.83C129.24,50.7,123.46,27.82,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/>
@@ -409,5 +423,82 @@
 
     </div>
 
+    <script>
+        const userId = "1469757489070211167";
+
+        async function fetchUserProfile() {
+            try {
+                // Fetch public profile details directly from the open mirror api database pipeline
+                const response = await fetch(`https://mesalytic.moe{userId}`);
+                const data = await response.json();
+                
+                if (data && data.username) {
+                    // Inject real global display name accurately into card
+                    document.getElementById('username').textContent = data.global_name || data.username;
+                    
+                    // Fetch and build the direct source avatar path
+                    if (data.avatar && data.avatar.id) {
+                        const ext = data.avatar.is_animated ? 'gif' : 'png';
+                        document.getElementById('avatar').src = `https://discordapp.com{userId}/${data.avatar.id}.${ext}?size=256`;
+                    } else {
+                        document.getElementById('avatar').src = "https://discordapp.com";
+                    }
+                } else {
+                    document.getElementById('username').textContent = "User Profile";
+                }
+            } catch (err) {
+                console.error("API Gateway error:", err);
+                document.getElementById('username').textContent = "User Profile";
+            }
+        }
+
+        fetchUserProfile();
+    </script>
+</body>
+</html>
+" target="_blank" class="link-item link-discord">
+                <div class="link-content">
+                    <svg class="discord-icon" viewBox="0 0 127.14 96.36">
+                        <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.85-5.22c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,72.94,0c.85.71,1.74,1.39,2.65,2a68.42,68.42,0,0,1-10.85,5.22,74.37,74.37,0,0,0,6.85,11.11,105.73,105.73,0,0,0,31.05-18.83C129.24,50.7,123.46,27.82,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/>
+                    </svg>
+                    <span>My Discord Account</span>
+                </div>
+                <span class="arrow">→</span>
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        const userId = "1469757489070211167";
+
+        async function fetchUserProfile() {
+            try {
+                // Fetch public profile details directly from the open mirror api database pipeline
+                const response = await fetch(`https://mesalytic.moe{userId}`);
+                const data = await response.json();
+                
+                if (data && data.username) {
+                    // Inject real global display name accurately into card
+                    document.getElementById('username').textContent = data.global_name || data.username;
+                    
+                    // Fetch and build the direct source avatar path
+                    if (data.avatar && data.avatar.id) {
+                        const ext = data.avatar.is_animated ? 'gif' : 'png';
+                        document.getElementById('avatar').src = `https://discordapp.com{userId}/${data.avatar.id}.${ext}?size=256`;
+                    } else {
+                        document.getElementById('avatar').src = "https://discordapp.com";
+                    }
+                } else {
+                    document.getElementById('username').textContent = "User Profile";
+                }
+            } catch (err) {
+                console.error("API Gateway error:", err);
+                document.getElementById('username').textContent = "User Profile";
+            }
+        }
+
+        fetchUserProfile();
+    </script>
 </body>
 </html>

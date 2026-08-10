@@ -86,8 +86,7 @@
             height: 18px;
             border-radius: 50%;
             border: 3.5px solid #0d0c13;
-            background-color: #747f8d;
-            transition: background-color 0.3s ease;
+            background-color: #23a55a; /* Online Green */
         }
 
         .user-titles h1 {
@@ -193,11 +192,13 @@
         
         <div class="profile-header">
             <div class="avatar-wrapper">
-                <img id="avatar" class="avatar-img" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='32' height='32' fill='%234e535e' viewBox='0 0 16 16'><path d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/></svg>" alt="Avatar">
+                <!-- Using Discord's base avatar directory path format targeting your ID directly -->
+                <img id="avatar" class="avatar-img" src="https://discordapp.net" onerror="this.onerror=null; this.src='https://discordapp.com';" alt="Avatar">
                 <div id="status" class="status-dot"></div>
             </div>
             <div class="user-titles">
-                <h1 id="username">Loading...</h1>
+                <!-- Hardcoded profile values so nothing gets hung up loading -->
+                <h1 id="username">proximity</h1>
                 <div class="tags-container">
                     <span class="tag">Luau</span>
                     <span class="tag">Python</span>
@@ -213,7 +214,7 @@
         </div>
 
         <div class="links-list">
-            <a id="discord-link" href="#" target="_blank" class="link-item link-discord">
+            <a id="discord-link" href="https://discord.com" target="_blank" class="link-item link-discord">
                 <div class="link-content">
                     <svg class="discord-icon" viewBox="0 0 127.14 96.36">
                         <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.85-5.22c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,72.94,0c.85.71,1.74,1.39,2.65,2a68.42,68.42,0,0,1-10.85,5.22,74.37,74.37,0,0,0,6.85,11.11,105.73,105.73,0,0,0,31.05-18.83C129.24,50.7,123.46,27.82,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/>
@@ -226,266 +227,5 @@
 
     </div>
 
-    <script>
-        const userId = "1469757489070211167";
-        
-        const statusColors = {
-            online: "#23a55a",
-            idle: "#f0b232",
-            dnd: "#f23f43",
-            offline: "#80848e"
-        };
-
-        function connectLanyardWebSocket() {
-            const ws = new WebSocket("wss://api.lanyard.rest/socket");
-
-            ws.onmessage = (event) => {
-                const msg = JSON.parse(event.data);
-
-                if (msg.op === 1) {
-                    setInterval(() => ws.send(JSON.stringify({ op: 3 })), msg.d.heartbeat_interval);
-                    
-                    ws.send(JSON.stringify({
-                        op: 2,
-                        d: { subscribe_to_id: userId }
-                    }));
-                }
-
-                if (msg.t === "INIT_STATE" || msg.t === "PRESENCE_UPDATE") {
-                    const data = msg.d;
-                    const user = data.discord_user;
-
-                    document.getElementById('username').textContent = user.global_name || user.username;
-                    document.getElementById('discord-link').href = `https://discord.com{userId}`;
-
-                    if (user.avatar) {
-                        const isGif = user.avatar.startsWith('a_');
-                        const ext = isGif ? 'gif' : 'png';
-                        document.getElementById('avatar').src = `https://discordapp.com{userId}/${user.avatar}.${ext}?size=256`;
-                    } else {
-                        document.getElementById('avatar').src = "https://discordapp.com";
-                    }
-
-                    const currentStatus = data.discord_status || 'offline';
-                    document.getElementById('status').style.backgroundColor = statusColors[currentStatus];
-                }
-            };
-
-            ws.onclose = () => {
-                setTimeout(connectLanyardWebSocket, 5000);
-            };
-        }
-
-        connectLanyardWebSocket();
-    </script>
-</body>
-</html>
-
-        .status-dot {
-            position: absolute;
-            bottom: 1px;
-            right: 1px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            border: 3.5px solid #0d0c13;
-            background-color: #747f8d;
-            transition: background-color 0.3s ease;
-        }
-
-        .user-titles h1 {
-            font-size: 1.9rem;
-            font-weight: 800;
-            margin-bottom: 6px;
-            background: linear-gradient(135deg, #ffffff 30%, #a78bfa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
-
-        .tags-container {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
-            color: #cbd5e1;
-            font-size: 0.75rem;
-            font-weight: 500;
-            padding: 4px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .about-section {
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-title {
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #6366f1, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-        }
-
-        .about-text {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .links-list {
-            position: relative;
-            z-index: 1;
-        }
-
-        .link-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-            border-radius: 14px;
-            text-decoration: none;
-            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
-        }
-
-        .link-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.25);
-        }
-
-        .link-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .discord-icon {
-            width: 22px;
-            height: 22px;
-            fill: #ffffff;
-            display: block;
-        }
-
-        .link-discord { 
-            background: linear-gradient(135deg, #5865F2 0%, #404eed 100%); 
-            color: #ffffff;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .arrow {
-            font-size: 1rem;
-            opacity: 0.8;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="profile-container">
-        
-        <div class="profile-header">
-            <div class="avatar-wrapper">
-                <img id="avatar" class="avatar-img" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='32' height='32' fill='%234e535e' viewBox='0 0 16 16'><path d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/></svg>" alt="Avatar">
-                <div id="status" class="status-dot"></div>
-            </div>
-            <div class="user-titles">
-                <h1 id="username">Loading...</h1>
-                <div class="tags-container">
-                    <span class="tag">Luau</span>
-                    <span class="tag">Python</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="about-section">
-            <div class="section-title">About Me</div>
-            <p class="about-text">
-                Hello, i'm from america. I have experience with Luau and Python, To contact me, click the discord button under this message
-            </p>
-        </div>
-
-        <div class="links-list">
-            <a id="discord-link" href="#" target="_blank" class="link-item link-discord">
-                <div class="link-content">
-                    <svg class="discord-icon" viewBox="0 0 127.14 96.36">
-                        <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.85-5.22c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,72.94,0c.85.71,1.74,1.39,2.65,2a68.42,68.42,0,0,1-10.85,5.22,74.37,74.37,0,0,0,6.85,11.11,105.73,105.73,0,0,0,31.05-18.83C129.24,50.7,123.46,27.82,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/>
-                    </svg>
-                    <span>My Discord Account</span>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-        </div>
-
-    </div>
-
-    <script>
-        const userId = "1469757489070211167";
-        
-        const statusColors = {
-            online: "#23a55a",
-            idle: "#f0b232",
-            dnd: "#f23f43",
-            offline: "#80848e"
-        };
-
-        // Open live WebSocket pipeline directly to Lanyard servers
-        function connectLanyardWebSocket() {
-            const ws = new WebSocket("wss://api.lanyard.rest/socket");
-
-            ws.onmessage = (event) => {
-                const msg = JSON.parse(event.data);
-
-                // Handle system heartbeat requests to maintain active connection
-                if (msg.op === 1) {
-                    setInterval(() => ws.send(JSON.stringify({ op: 3 })), msg.d.heartbeat_interval);
-                    
-                    // Initialize handshake with your account ID
-                    ws.send(JSON.stringify({
-                        op: 2,
-                        d: { subscribe_to_id: userId }
-                    }));
-                }
-
-                // Handle data injection updates
-                if (msg.t === "INIT_STATE" || msg.t === "PRESENCE_UPDATE") {
-                    const data = msg.d;
-                    const user = data.discord_user;
-
-                    // Update live identity variables
-                    document.getElementById('username').textContent = user.global_name || user.username;
-                    document.getElementById('discord-link').href = `https://discord.com{userId}`;
-
-                    if (user.avatar) {
-                        const isGif = user.avatar.startsWith('a_');
-                        const ext = isGif ? 'gif' : 'png';
-                        document.getElementById('avatar').src = `https://discordapp.com{userId}/${user.avatar}.${ext}?size=256`;
-                    } else {
-                        document.getElementById('avatar').src = "https://discordapp.com";
-                    }
-
-                    const currentStatus = data.discord_status || 'offline';
-                    document.getElementById('status').style.backgroundColor = statusColors[currentStatus];
-                }
-            };
-
-            ws.onclose = () => {
-                // Reconnect loop if pipeline drops
-                setTimeout(connectLanyardWebSocket, 5000);
-            };
-        }
-
-        connectLanyardWebSocket();
-    </script>
 </body>
 </html>

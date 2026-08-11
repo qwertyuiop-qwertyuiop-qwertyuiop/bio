@@ -6,160 +6,168 @@
     <title>Lumi !</title>
     <style>
         * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         body {
-            background-color: #f7f7f7;
-            color: #1a1a1a;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            background-color: #f7f7f7 !important;
+            color: #1a1a1a !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+            min-height: 100vh !important;
+            width: 100vw !important;
+            display: grid !important;
+            place-items: center !important; /* Forces the entire card right into the middle of the screen */
         }
 
-        /* Enforces a single vertical column on both phone and laptop screens */
+        /* Strict block container wrapper to prevent any horizontal expansion */
         .profile-card {
-            background-color: #ffffff;
-            width: 100%;
-            max-width: 400px;
-            padding: 32px;
-            border-radius: 20px;
-            border: 1px solid #e1e1e1;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            background-color: #ffffff !important;
+            width: 90% !important;
+            max-width: 380px !important; /* Locked explicit desktop width */
+            padding: 32px !important;
+            border-radius: 20px !important;
+            border: 1px solid #e1e1e1 !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
             
-            /* Forces clean top-to-bottom layout alignment */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            /* Strict vertical grid blueprint */
+            display: grid !important;
+            grid-template-columns: 100% !important;
+            row-gap: 20px !important; /* Enforces absolute gaps between vertically stacked blocks */
+            justify-items: center !important;
         }
 
         .avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 16px;
-            object-fit: cover;
-            border: 1px solid #eaeaea;
-            margin-bottom: 20px;
+            width: 90px !important;
+            height: 90px !important;
+            border-radius: 16px !important;
+            object-fit: cover !important;
+            border: 1px solid #eaeaea !important;
+            display: block !important;
         }
 
-        .identity {
-            width: 100%;
-            margin-bottom: 20px;
+        .identity-block {
+            text-align: center !important;
+            width: 100% !important;
         }
 
-        .identity h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #111111;
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
+        .identity-block h1 {
+            font-size: 1.8rem !important;
+            font-weight: 800 !important;
+            color: #111111 !important;
+            letter-spacing: -0.5px !important;
+            margin-bottom: 4px !important;
         }
 
-        .identity .handle {
-            font-size: 0.95rem;
-            color: #666666;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            display: block;
+        .identity-block .handle {
+            font-size: 0.95rem !important;
+            color: #666666 !important;
+            font-family: monospace !important;
+            display: block !important;
         }
 
-        .bio-section {
-            width: 100%;
-            margin-bottom: 28px;
+        .bio-block {
+            text-align: center !important;
+            width: 100% !important;
         }
 
         .bio-text {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #2b2b2b;
-            margin-bottom: 16px;
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+            color: #2b2b2b !important;
+            margin-bottom: 16px !important;
+            display: block !important;
         }
 
-        .skills-container {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
+        .skills-row {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            width: 100% !important;
         }
 
         .skill-tag {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            font-size: 0.8rem;
-            color: #444444;
-            background-color: #f5f5f5;
-            padding: 4px 12px;
-            border-radius: 6px;
-            border: 1px solid #e8e8e8;
-            text-transform: lowercase;
+            font-family: monospace !important;
+            font-size: 0.8rem !important;
+            color: #444444 !important;
+            background-color: #f5f5f5 !important;
+            padding: 4px 12px !important;
+            border-radius: 6px !important;
+            border: 1px solid #e8e8e8 !important;
         }
 
-        /* Tactile solid shadow button layout */
+        /* Isolated structural block button link */
         .discord-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background-color: #111111;
-            color: #ffffff;
-            text-decoration: none;
-            width: 100%; /* Spans full card width on mobile layouts */
-            padding: 14px 20px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: all 0.1s ease;
-            box-shadow: 0 4px 0px #333333;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 10px !important;
+            background-color: #111111 !important;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            width: 100% !important;
+            height: 50px !important; /* Absolute height lock */
+            border-radius: 12px !important;
+            font-size: 0.95rem !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 0px #333333 !important;
+            transition: transform 0.1s ease, box-shadow 0.1s ease !important;
         }
 
         .discord-btn:hover {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0px #333333;
+            transform: translateY(2px) !important;
+            box-shadow: 0 2px 0px #333333 !important;
         }
 
         .discord-btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 0px 0px #333333;
+            transform: translateY(4px) !important;
+            box-shadow: 0 0px 0px #333333 !important;
         }
 
         .discord-icon {
-            width: 20px;
-            height: 20px;
-            fill: #ffffff;
+            width: 20px !important;
+            height: 20px !important;
+            fill: #ffffff !important;
+            display: block !important;
         }
     </style>
 </head>
 <body>
 
+    <!-- Strict vertical layout grid container -->
     <div class="profile-card">
         
-        <img class="avatar" src="https://cdn.discordapp.com/avatars/1469757489070211167/62df0ef921af061a69bbdc253c7c43f3.webp?size=2048" alt="Lumi">
+        <!-- Block 1: Profile Image -->
+        <img class="avatar" src="https://discordapp.com" alt="Lumi">
 
+        
         
             <h1>Lumi !</h1>
             <span class="handle">@arozely</span>
         </div>
 
-        <div class="bio-section">
-            <p class="bio-text">
+        <!-- Block 3: Biography Content & Tags -->
+        <div class="bio-block">
+            <span class="bio-text">
                 Hello, i'm from america. I have experience with Luau and Python, To contact me, click the discord button under this message
-            </p>
-            <div class="skills-container">
+            </span>
+            <div class="skills-row">
                 <span class="skill-tag">luau</span>
                 <span class="skill-tag">python</span>
             </div>
         </div>
 
-        <a class="discord-btn" href="https://discord.com/users/1469757489070211167" target="_blank">
+        <!-- Block 4: Fixed Action Button -->
+        <a class="discord-btn" href="https://discord.com" target="_blank">
             <svg class="discord-icon" viewBox="0 0 127.14 96.36">
                 <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.85-5.22c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,72.94,0c.85.71,1.74,1.39,2.65,2a68.42,68.42,0,0,1-10.85,5.22,74.37,74.37,0,0,0,6.85,11.11,105.73,105.73,0,0,0,31.05-18.83C129.24,50.7,123.46,27.82,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/>
             </svg>
             Connect on Discord
         </a>
+        
     </div>
 
 </body>

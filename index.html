@@ -12,398 +12,172 @@
         }
 
         body {
-            background-color: #030303;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 24px;
         }
 
-        /* Profile Card with Purple Border Accent and Deep Ambient Glow Gradient */
-        .profile-container {
-            background: linear-gradient(135deg, #130f1d 0%, #0b0c10 100%);
+        /* Clean, structural minimalist card container */
+        .card {
+            background-color: #ffffff;
             width: 100%;
-            max-width: 420px;
-            border-radius: 24px;
-            padding: 30px;
-            border: 1px solid rgba(138, 92, 246, 0.15);
-            box-shadow: 0px 0px 50px rgba(138, 92, 246, 0.12), 0px 0px 100px rgba(88, 101, 242, 0.08);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
+            max-width: 440px;
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid #e1e1e1;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
 
-        .profile-container:hover {
-            transform: scale(1.02);
-        }
-
-        .profile-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(138, 92, 246, 0.05) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .profile-header {
+        .header {
             display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 1;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 24px;
         }
 
-        .avatar-wrapper {
-            position: relative;
-            width: 78px;
-            height: 78px;
-        }
-
-        .avatar-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px; /* Smooth square corner layout */
             object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.08);
-            background-color: #1a1c23;
+            border: 1px solid #eaeaea;
         }
 
-        /* Premium Name Gradient Text Effect */
-        .user-titles h1 {
-            font-size: 1.9rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 30%, #a78bfa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
-
-        /* Username Text Style */
-        .user-titles .username-sub {
-            font-size: 0.9rem;
-            color: #8b949e;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .tags-container {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
-            color: #cbd5e1;
+        /* Tiny custom badge indicator */
+        .badge {
             font-size: 0.75rem;
-            font-weight: 500;
+            font-weight: 600;
+            color: #2da44e;
+            background-color: #dafbe1;
             padding: 4px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .about-section {
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #2da44e;
+            border-radius: 50%;
         }
 
-        .section-title {
-            font-size: 0.75rem;
+        .identity {
+            margin-bottom: 20px;
+        }
+
+        .identity h1 {
+            font-size: 1.75rem;
             font-weight: 700;
-            background: linear-gradient(90deg, #6366f1, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
+            color: #111111;
+            letter-spacing: -0.5px;
+            margin-bottom: 2px;
         }
 
-        .about-text {
-            color: #94a3b8;
+        .identity .handle {
+            font-size: 0.95rem;
+            color: #6e6e6e;
+            font-family: ui-monospace, SFMono-Regular, SF Pro Mono, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .bio-section {
+            margin-bottom: 28px;
+        }
+
+        .bio-text {
             font-size: 0.95rem;
             line-height: 1.6;
+            color: #333333;
         }
 
-        .links-list {
-            position: relative;
-            z-index: 1;
+        .skills-container {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
         }
 
-        .link-item {
+        .skill-tag {
+            font-family: ui-monospace, SFMono-Regular, SF Pro Mono, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.8rem;
+            color: #444444;
+            background-color: #f1f1f1;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #e5e5e5;
+        }
+
+        /* Custom structural button with a stark offset drop-shadow */
+        .discord-btn {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-            border-radius: 14px;
+            justify-content: center;
+            gap: 10px;
+            background-color: #111111;
+            color: #ffffff;
             text-decoration: none;
-            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.15s ease;
+            box-shadow: 0 4px 0px #333333;
         }
 
-        .link-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.25);
+        .discord-btn:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #333333;
         }
 
-        .link-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .discord-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0px #333333;
         }
 
         .discord-icon {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             fill: #ffffff;
-            display: block;
-        }
-
-        .link-discord { 
-            background: linear-gradient(135deg, #5865F2 0%, #404eed 100%); 
-            color: #ffffff;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .arrow {
-            font-size: 1rem;
-            opacity: 0.8;
-            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <div class="profile-container">
+    <div class="card">
+        <div class="header">
+            <img class="avatar" src="https://cdn.discordapp.com/avatars/1469757489070211167/62df0ef921af061a69bbdc253c7c43f3.webp?size=2048" alt="Lumi">
+            <div class="badge">
+                <span class="badge-dot"></span> Active
+            </div>
+        </div>
+
         
-        <div class="profile-header">
-            <div class="avatar-wrapper">
-                <!-- Hardcoded your exact permanent Discord CDN avatar image link -->
-                <img id="avatar" class="avatar-img" src="https://cdn.discordapp.com/avatars/1469757489070211167/62df0ef921af061a69bbdc253c7c43f3.webp?size=2048" alt="Lumi's Avatar">
-            </div>
-            <div class="user-titles">
-                <!-- Your Exact Personal Display Name -->
-                <h1>Lumi !</h1>
-                <!-- Your Exact Username -->
-                <span class="username-sub">@arozely</span>
-                <div class="tags-container">
-                    <span class="tag">Luau</span>
-                    <span class="tag">Python</span>
-                </div>
-            </div>
+            <h1>Lumi !</h1>
+            <span class="handle">@arozely</span>
         </div>
 
-        <div class="about-section">
-            <div class="section-title">About Me</div>
-            <p class="about-text">
-                Hello, i'm from america. I have experience with Luau and Python, To contact me, click the discord button under this message
+        <div class="bio-section">
+            <p class="bio-text">
+                Hello, i'm from america. I have experience with Luau and Python. To contact me, click the discord button under this message.
             </p>
+            <div class="skills-container">
+                <span class="skill-tag">luau</span>
+                <span class="tag skill-tag">python</span>
+            </div>
         </div>
 
-        <div class="links-list">
-            <!-- Direct working link to pop your profile card open cleanly -->
-            <a id="discord-link" href="https://discord.com" target="_blank" class="link-item link-discord">
-                <div class="link-content">
-                    <svg class="discord-icon" viewBox="0 0 127.14 96.36">
-                        <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.85-5.22c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,72.94,0c.85.71,1.74,1.39,2.65,2a68.42,68.42,0,0,1-10.85,5.22,74.37,74.37,0,0,0,6.85,11.11,105.73,105.73,0,0,0,31.05-18.83C129.24,50.7,123.46,27.82,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/>
-                    </svg>
-                    <span>My Discord Account</span>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-        </div>
-
+        <a class="discord-btn" href="https://discord.com/users/1469757489070211167" target="_blank">
+            <svg class="discord-icon" viewBox="0 0 127.14 96.36">
+                <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.85-5.22c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,72.94,0c.85.71,1.74,1.39,2.65,2a68.42,68.42,0,0,1-10.85,5.22,74.37,74.37,0,0,0,6.85,11.11,105.73,105.73,0,0,0,31.05-18.83C129.24,50.7,123.46,27.82,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/>
+            </svg>
+            Connect on Discord
+        </a>
     </div>
 
-</body>
-</html>
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.08);
-            background-color: #1a1c23;
-        }
-
-        /* Premium Name Gradient Text effect */
-        .user-titles h1 {
-            font-size: 1.9rem;
-            font-weight: 800;
-            margin-bottom: 6px;
-            background: linear-gradient(135deg, #ffffff 30%, #a78bfa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
-
-        .tags-container {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
-            color: #cbd5e1;
-            font-size: 0.75rem;
-            font-weight: 500;
-            padding: 4px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .about-section {
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-title {
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #6366f1, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-        }
-
-        .about-text {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .links-list {
-            position: relative;
-            z-index: 1;
-        }
-
-        .link-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-            border-radius: 14px;
-            text-decoration: none;
-            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
-        }
-
-        .link-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.25);
-        }
-
-        .link-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .discord-icon {
-            width: 22px;
-            height: 22px;
-            fill: #ffffff;
-            display: block;
-        }
-
-        .link-discord { 
-            background: linear-gradient(135deg, #5865F2 0%, #404eed 100%); 
-            color: #ffffff;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .arrow {
-            font-size: 1rem;
-            opacity: 0.8;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="profile-container">
-        
-        <div class="profile-header">
-            <div class="avatar-wrapper">
-                <!-- Fallback default vector layout triggers before public dataset executes loading hooks -->
-                <img id="avatar" class="avatar-img" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='32' height='32' fill='%234e535e' viewBox='0 0 16 16'><path d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/></svg>" alt="Avatar">
-            </div>
-            <div class="user-titles">
-                <h1 id="username">Loading...</h1>
-                <div class="tags-container">
-                    <span class="tag">Luau</span>
-                    <span class="tag">Python</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="about-section">
-            <div class="section-title">About Me</div>
-            <p class="about-text">
-                Hello, i'm from america. I have experience with Luau and Python, To contact me, click the discord button under this message
-            </p>
-        </div>
-
-        <div class="links-list">
-            <!-- Correct global context routing pipeline -->
-            <a id="discord-link" href="https://discord.com" target="_blank" class="link-item link-discord">
-                <div class="link-content">
-                    <svg class="discord-icon" viewBox="0 0 127.14 96.36">
-                        <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.85-5.22c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,72.94,0c.85.71,1.74,1.39,2.65,2a68.42,68.42,0,0,1-10.85,5.22,74.37,74.37,0,0,0,6.85,11.11,105.73,105.73,0,0,0,31.05-18.83C129.24,50.7,123.46,27.82,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/>
-                    </svg>
-                    <span>My Discord Account</span>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-        </div>
-
-    </div>
-
-    <script>
-        const userId = "1469757489070211167";
-
-        async function fetchUserProfile() {
-            try {
-                // Querying the public mirror proxy engine directly with your target SnowFlake account ID
-                const response = await fetch(`https://mesalytic.moe{userId}`);
-                const data = await response.json();
-                
-                if (data && data.username) {
-                    // Extract custom global identity label string out of data array
-                    document.getElementById('username').textContent = data.global_name || data.username;
-                    
-                    // Format and render live image CDN vector hashes directly
-                    if (data.avatar && data.avatar.id) {
-                        const ext = data.avatar.is_animated ? 'gif' : 'png';
-                        document.getElementById('avatar').src = `https://discordapp.com{userId}/${data.avatar.id}.${ext}?size=256`;
-                    } else {
-                        document.getElementById('avatar').src = "https://discordapp.com";
-                    }
-                } else {
-                    document.getElementById('username').textContent = "User Profile";
-                }
-            } catch (err) {
-                console.error("Mirror tracking failure:", err);
-                document.getElementById('username').textContent = "User Profile";
-            }
-        }
-
-        fetchUserProfile();
-    </script>
 </body>
 </html>

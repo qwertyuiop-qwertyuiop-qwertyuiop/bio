@@ -212,11 +212,8 @@
             document.getElementById('avatar').src = getAvatarUrl(user);
             document.getElementById('avatar').alt = user.username;
 
-            if (user.bio) {
-                document.getElementById('bio').textContent = user.bio;
-            } else {
-                document.getElementById('bio').textContent = `Hey, I'm ${user.username} on Discord!`;
-            }
+            // Set custom bio with username dynamically inserted
+            document.getElementById('bio').textContent = `Hello, I'm ${user.username}, a Luau and Python programmer. To contact me, DM me at discord.com, my username is ${user.username}`;
 
             const discordLink = document.getElementById('discordLink');
             discordLink.href = `https://discord.com/users/${user.id}`;
